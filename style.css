@@ -1,0 +1,62 @@
+body {
+    background-color: #f3c999;
+    font-family: cursive;
+    color: #000;
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 40px;
+    font-size: 2em;
+}
+
+.question {
+    margin: 40px 0;
+}
+
+.question img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.question p {
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+button {
+    background: ghostwhite;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 1em;
+}
+
+button:hover {
+    background: lavender;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+button.clicked.correct {
+    background-color: green;
+    color: white;
+}
+
+button.clicked.incorrect {
+    background-color: red;
+    color: white;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
