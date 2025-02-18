@@ -1,5 +1,5 @@
 body {
-    background-color: #f3c999;
+    background-color: #FFC66C;
     font-family: cursive;
     color: #000;
     text-align: center;
@@ -30,15 +30,23 @@ h1 {
     font-size: 1.2em;
 }
 
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+
 button {
     background: ghostwhite;
     border: none;
     color: black;
     padding: 10px 20px;
-    margin: 10px;
     border-radius: 5px;
     transition: 0.3s;
     font-size: 1em;
+    width: 100%; 
 }
 
 button:hover {
@@ -59,4 +67,12 @@ button.clicked.incorrect {
 
 button:disabled {
     cursor: not-allowed;
+}
+
+/* Rectangle image styling */
+.question img.rectangle-image {
+    width: 200px; 
+    height: 100px; 
+    object-fit: cover; 
+    border-radius: 5px; 
 }
