@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="score-container">
+        Score: <span id="current-score">0</span>/5
+    </div>
+
     <h1>UM Restaurant Guessing Game</h1>
 
     <!-- Question 1 -->
@@ -70,21 +74,27 @@
     </div>
 
     <script>
-        function checkAnswer(button, correctAnswer) {
-            button.classList.add("clicked");
-            const isCorrect = button.classList.contains("correct");
+        let score = 0;
+    const scoreElement = document.getElementById('current-score');
 
-            if (isCorrect) {
-                button.classList.add("correct");
-            } else {
-                button.classList.add("incorrect");
-            }
+    function checkAnswer(button, correctAnswer) {
+        button.classList.add("clicked");
+        const isCorrect = button.classList.contains("correct");
 
-            // Disable all buttons for the current question
-            const question = button.closest(".question");
-            const buttons = question.querySelectorAll("button");
-            buttons.forEach(btn => btn.disabled = true);
+        // Disable all buttons first
+        const question = button.closest(".question");
+        const buttons = question.querySelectorAll("button");
+        buttons.forEach(btn => btn.disabled = true);
+
+        // Update score
+        if (isCorrect) {
+            score++;
+            scoreElement.textContent = score;
         }
+        
+        // Visual feedback
+        button.classList.add(isCorrect ? "correct" : "incorrect");
+    }
     </script>
 </body>
 </html>
