@@ -15,7 +15,7 @@
 
     <!-- Question 1 -->
     <div class="question">
-        <img src="images/panda.jpg" alt="Restaurant 1">
+        <img src="images/panda.jpg" alt="Restaurant 1" data-next-src="images/panda-after.jpg">
         <p>Guess the restaurant</p>
         <div class="button-container">
             <button onclick="checkAnswer(this, 'Panda Express')">Starbucks</button>
@@ -27,7 +27,7 @@
 
     <!-- Question 2 -->
     <div class="question">
-        <img src="images/tacos.jpg" alt="Restaurant 2">
+        <img src="images/tacos.jpg" alt="Restaurant 2" data-next-src="images/tacos-after.jpg">
         <p>Guess the restaurant</p>
         <div class="button-container">
             <button onclick="checkAnswer(this, 'Tossed')">Tossed</button>
@@ -39,7 +39,7 @@
 
     <!-- Question 3 -->
     <div class="question">
-        <img src="images/corner.jpg" alt="Restaurant 3">
+        <img src="images/corner.jpg" alt="Restaurant 3" data-next-src="images/corner-after.jpg">
         <p>Guess the restaurant</p>
         <div class="button-container">
             <button onclick="checkAnswer(this, 'Tossed')">Tossed</button>
@@ -51,7 +51,7 @@
 
     <!-- Question 4 -->
     <div class="question">
-        <img src="images/rat.jpg" alt="Restaurant 4" class="rectangle-image">
+        <img src="images/rat.jpg" alt="Restaurant 4" class="rectangle-image" data-next-src="images/rat-after.jpg">
         <p>Guess the restaurant</p>
         <div class="button-container">
             <button class="correct" onclick="checkAnswer(this, 'The Rat')">The Rat</button>
@@ -63,7 +63,7 @@
 
     <!-- Question 5 -->
     <div class="question">
-        <img src="images/halfmoon.jpg" alt="Restaurant 5">
+        <img src="images/halfmoon.jpg" alt="Restaurant 5" data-next-src="images/halfmoon-after.jpg">
         <p>Guess the restaurant</p>
         <div class="button-container">
             <button onclick="checkAnswer(this, 'The Rat')">The Rat</button>
@@ -79,21 +79,34 @@
 
     function checkAnswer(button, correctAnswer) {
         button.classList.add("clicked");
-        const isCorrect = button.classList.contains("correct");
+    const isCorrect = button.classList.contains("correct");
+    const question = button.closest(".question");
+    const buttons = question.querySelectorAll("button");
+    const image = question.querySelector('img');
 
-        // Disable all buttons first
-        const question = button.closest(".question");
-        const buttons = question.querySelectorAll("button");
-        buttons.forEach(btn => btn.disabled = true);
+    // Disable all buttons
+    buttons.forEach(btn => btn.disabled = true);
 
-        // Update score
-        if (isCorrect) {
-            score++;
-            scoreElement.textContent = score;
+    // Update score
+    if (isCorrect) {
+        score++;
+        scoreElement.textContent = score;
+    }
+
+    // Visual feedback
+    button.classList.add(isCorrect ? "correct" : "incorrect");
+
+    // Change the image after 500ms
+    setTimeout(() => {
+        if (image.dataset.nextSrc) {
+            image.classList.add('changed');
+            setTimeout(() => {
+                image.src = image.dataset.nextSrc;
+                image.classList.remove('changed');
+            }, 500); // Matches CSS transition duration
         }
-        
-        // Visual feedback
-        button.classList.add(isCorrect ? "correct" : "incorrect");
+    }, 1000);
+    
     }
     </script>
 </body>
